@@ -110,3 +110,42 @@ CREATE TABLE bronze.erp_px_cat_g1v2 (
     subcat       NVARCHAR(50),
     maintenance  NVARCHAR(50)
 );
+
+-------------------------------------------
+
+TRUNCATE TABLE bronze.crm_cust_info;
+
+BULK INSERT bronze.crm_cust_info
+FROM 'G:\DE interview\3\sql-data-warehouse-project\datasets\source_crm\cust_info.csv'
+WITH(
+    FIRSTROW = 2,
+    FIELDTERMINATOR = ',',
+    TABLOCK
+);
+
+SELECT COUNT(*) FROM bronze.crm_cust_info
+
+-------------------------------------------
+
+TRUNCATE TABLE bronze.crm_prd_info;
+
+BULK INSERT bronze.crm_prd_info
+FROM 'G:\DE interview\3\sql-data-warehouse-project\datasets\source_crm\prd_info.csv'
+WITH(
+  FIRSTROW = 2,
+  FIELDTERMINATOR =',',
+  TABLOCK
+)
+SELECT * FROM bronze.crm_prd_info
+
+
+TRUNCATE TABLE bronze.crm_sales_details;
+
+BULK INSERT bronze.crm_sales_details
+FROM 'G:\DE interview\3\sql-data-warehouse-project\datasets\source_crm\sales_details.csv'
+WITH(
+   FIRSTROW =2,
+   FIELDTERMINATOR = ',',
+   TABLOCK
+)
+SELECT * FROM bronze.crm_sales_details
